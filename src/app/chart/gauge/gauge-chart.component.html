@@ -1,0 +1,49 @@
+<svg height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" class="typeRange" [ngStyle]="{
+  width: width+'px',
+  height: height+'px',
+  overflow: 'hidden',
+  position: 'relative',
+  left: '0',
+  top: '0'
+  }">
+  <path [attr.fill]="backgroundColor"
+        stroke="none"
+        [attr.d]="getPath(maxValue)"/>
+  <path [attr.fill]="color"
+        stroke="none"
+        [attr.d]="getPath(value)"/>
+
+  <text [attr.x]="width / 2"
+        [attr.y]="height / 5.7 * 4"
+        text-anchor="middle"
+        [ngStyle]="valueLabelStyle">
+    {{ valueFormatter(value) }}
+  </text>
+  <text [attr.x]="((pathValues.cX - pathValues.rO) + (pathValues.cX - pathValues.rI)) / 2"
+        [attr.y]="pathValues.cY + minMaxLabelsOffset"
+        text-anchor="middle"
+        [ngStyle]="minMaxLabelStyle">
+    {{minValue}}
+  </text>
+  <text [attr.x]="(pathValues.xO + pathValues.xI) / 2"
+        [attr.y]="pathValues.cY + minMaxLabelsOffset"
+        text-anchor="middle"
+        [ngStyle]="minMaxLabelStyle">
+    {{maxValue}}
+  </text>
+</svg>
+<div>
+  <mat-slider
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [invert]="invert"
+    [max]="maxValue"
+    [min]="minValue"
+    [step]="step"
+    [thumbLabel]="thumbLabel"
+    [tickInterval]="sliderTickInterval"
+    [vertical]="vertical"
+    (input)="onInputChange($event)"
+  >
+  </mat-slider>
+</div>

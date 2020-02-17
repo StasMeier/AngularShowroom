@@ -1,4 +1,4 @@
-<svg height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" [ngStyle]="{
+<svg height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" class="typeRange" [ngStyle]="{
   width: width+'px',
   height: height+'px',
   overflow: 'hidden',
@@ -9,25 +9,5 @@
   <path [attr.fill]="backgroundColor"
         stroke="none"
         [attr.d]="getPath(maxValue)"/>
-  <path [attr.fill]="color"
-        stroke="none"
-        [attr.d]="getPath(value)"/>
-  <text [attr.x]="width / 2"
-        [attr.y]="height / 5 * 4"
-        text-anchor="middle"
-        [ngStyle]="valueLabelStyle">
-    {{ valueFormatter(value) }}
-  </text>
-  <text [attr.x]="((pathValues.Cx - pathValues.Ro) + (pathValues.Cx - pathValues.Ri)) / 2"
-        [attr.y]="pathValues.Cy + minMaxLabelsOffset"
-        text-anchor="middle"
-        [ngStyle]="minMaxLabelStyle">
-    {{min}}
-  </text>
-  <text [attr.x]="(pathValues.Xo + pathValues.Xi) / 2"
-        [attr.y]="pathValues.Cy + minMaxLabelsOffset"
-        text-anchor="middle"
-        [ngStyle]="minMaxLabelStyle">
-    {{maxValue}}
-  </text>
+  <line x1="50" y1="50" x2="200" y2="200" />
 </svg>
