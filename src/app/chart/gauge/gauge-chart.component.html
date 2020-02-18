@@ -1,11 +1,4 @@
-<svg height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" class="typeRange" [ngStyle]="{
-  width: width+'px',
-  height: height+'px',
-  overflow: 'hidden',
-  position: 'relative',
-  left: '0',
-  top: '0'
-  }">
+<svg height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" class="typeRange" [ngStyle]="svgStyle">
   <path [attr.fill]="backgroundColor"
         stroke="none"
         [attr.d]="getPath(maxValue)"/>

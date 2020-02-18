@@ -1,0 +1,4 @@
+.axis {
+  stroke: #000;
+  marker-end: url(#markerArrow);
+}
