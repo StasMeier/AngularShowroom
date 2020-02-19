@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as d3 from 'd3';
 import {ForceDirectedGraph, Link, Node} from './models';
+import {CandleStickGraph} from './models/candle-stick-graph';
 
 @Injectable({
   providedIn: 'root'
@@ -65,11 +66,13 @@ export class D3Service {
       .on('start', started));
   }
 
-  /** The interactable graph we will simulate in this article
-   * This method does not interact with the document, purely physical calculations with d3
-   */
   getForceDirectedGraph(nodes: Node[], links: Link[], options: { width, height }) {
     const sg = new ForceDirectedGraph(nodes, links, options);
+    return sg;
+  }
+
+  getCandlestickGraph(nodes: Node[], options: { width, height }) {
+    const sg = new CandleStickGraph(nodes, options);
     return sg;
   }
 }

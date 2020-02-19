@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnInit} from '@angular/core';
-import {ForceDirectedGraph} from '../models';
+import {ForceDirectedGraph, CandleStickGraph} from '../models';
 import {D3Service} from '../d3.service';
 
 @Component({
@@ -19,9 +19,12 @@ import {D3Service} from '../d3.service';
 export class D3GraphComponent implements OnInit, AfterViewInit {
   @Input('nodes') nodes;
   @Input('links') links;
-  graph: ForceDirectedGraph;
+  @Input() width = 300;
+  @Input() height = 300;
+  // graph: ForceDirectedGraph;
+  graph: CandleStickGraph;
   // tslint:disable-next-line:variable-name
-  private _options: { width, height } = {width: 800, height: 600};
+  private _options: { width, height };
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -34,7 +37,8 @@ export class D3GraphComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */
-    this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
+    // this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
+    this.graph = this.d3Service.getCandlestickGraph(this.nodes, this.options);
 
     /** Binding change detection check on each tick
      * This along with an onPush change detection strategy should enforce checking only when relevant!
@@ -52,8 +56,8 @@ export class D3GraphComponent implements OnInit, AfterViewInit {
 
   get options() {
     return this._options = {
-      width: window.innerWidth,
-      height: window.innerHeight
+      width: this.width,
+      height: this.height
     };
   }
 }

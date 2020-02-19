@@ -9,6 +9,7 @@
 }
 
 .node-name {
+  cursor: pointer;
   font-family: 'Lato';
   text-anchor: middle;
   alignment-baseline: central;

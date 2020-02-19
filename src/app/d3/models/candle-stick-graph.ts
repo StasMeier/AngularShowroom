@@ -9,33 +9,16 @@ const FORCES = {
   CHARGE: -1
 };
 
-export class ForceDirectedGraph {
+export class CandleStickGraph {
   public ticker: EventEmitter<d3.Simulation<Node, Link>> = new EventEmitter();
   public simulation: d3.Simulation<any, any>;
 
   public nodes: Node[] = [];
-  public links: Link[] = [];
 
-  constructor(nodes, links, options: { width, height }) {
+  constructor(nodes, options: { width, height }) {
     this.nodes = nodes;
-    this.links = links;
 
     this.initSimulation(options);
-  }
-
-  connectNodes(source, target) {
-    let link;
-
-    if (!this.nodes[source] || !this.nodes[target]) {
-      throw new Error('One of the nodes does not exist');
-    }
-
-    link = new Link(source, target);
-    this.simulation.stop();
-    this.links.push(link);
-    this.simulation.alphaTarget(0.3).restart();
-
-    this.initLinks();
   }
 
   initNodes() {
@@ -44,18 +27,6 @@ export class ForceDirectedGraph {
     }
 
     this.simulation.nodes(this.nodes);
-  }
-
-  initLinks() {
-    if (!this.simulation) {
-      throw new Error('simulation was not initialized yet');
-    }
-
-    this.simulation.force('links',
-      d3.forceLink(this.links)
-        .id(d => d['id'])
-        .strength(FORCES.LINKS)
-    );
   }
 
   initSimulation(options) {
@@ -83,7 +54,6 @@ export class ForceDirectedGraph {
       });
 
       this.initNodes();
-      this.initLinks();
     }
 
     /** Updating the central force of the simulation */
