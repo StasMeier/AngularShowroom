@@ -17,6 +17,7 @@ import {
 import {LayoutModule} from '@angular/cdk/layout';
 import { NavigationComponent } from './navigation/navigation.component';
 import {ChartModule} from './chart/chart.module';
+import {D3Module} from './d3/d3.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {ChartModule} from './chart/chart.module';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    ChartModule
+    ChartModule,
+    D3Module
   ],
   providers: [],
   bootstrap: [AppComponent]
