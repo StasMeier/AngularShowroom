@@ -9,7 +9,7 @@ const FORCES = {
   CHARGE: -1
 };
 
-export class CandleStickGraph {
+export class SimpleLineGraph {
   public ticker: EventEmitter<d3.Simulation<Node, Link>> = new EventEmitter();
   public simulation: d3.Simulation<any, any>;
 

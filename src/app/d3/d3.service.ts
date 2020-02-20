@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as d3 from 'd3';
 import {ForceDirectedGraph, Link, Node} from './models';
-import {CandleStickGraph} from './models/candle-stick-graph';
+import {SimpleLineGraph} from './models/simple-line-graph';
 
 @Injectable({
   providedIn: 'root'
@@ -71,8 +71,8 @@ export class D3Service {
     return sg;
   }
 
-  getCandlestickGraph(nodes: Node[], options: { width, height }) {
-    const sg = new CandleStickGraph(nodes, options);
+  getSimpleLineGraph(nodes: Node[], options: { width, height }) {
+    const sg = new SimpleLineGraph(nodes, options);
     return sg;
   }
 }

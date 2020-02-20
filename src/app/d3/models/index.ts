@@ -3,4 +3,4 @@ export * from './link';
 
 // To be implemented in the next gist
 export * from './force-directed-graph';
-export * from './candle-stick-graph';
+export * from './simple-line-graph';

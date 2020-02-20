@@ -1,28 +1,27 @@
 import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnInit} from '@angular/core';
-import {ForceDirectedGraph, CandleStickGraph} from '../models';
+import {ForceDirectedGraph, SimpleLineGraph} from '../models';
 import {D3Service} from '../d3.service';
 
 @Component({
-  selector: 'd3-graph',
+  selector: 'd3-line',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
       <g [zoomableOf]="svg">
         <g [linkVisual]="link" *ngFor="let link of links"></g>
         <g [nodeVisual]="node" *ngFor="let node of nodes"
-            [draggableNode]="node" [draggableInGraph]="graph"></g>
+           [draggableNode]="node" [draggableInGraph]="graph"></g>
       </g>
     </svg>
   `,
-  styleUrls: ['./d3-graph.component.css']
+  styleUrls: ['./d3-bubble.component.css']
 })
-export class D3GraphComponent implements OnInit, AfterViewInit {
+export class D3LineComponent implements OnInit, AfterViewInit {
   @Input('nodes') nodes;
   @Input('links') links;
-  @Input() width = 300;
-  @Input() height = 300;
-  // graph: ForceDirectedGraph;
-  graph: CandleStickGraph;
+  @Input() width = 1000;
+  @Input() height = 600;
+  graph: SimpleLineGraph;
   // tslint:disable-next-line:variable-name
   private _options: { width, height };
 
@@ -37,8 +36,7 @@ export class D3GraphComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */
-    // this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
-    this.graph = this.d3Service.getCandlestickGraph(this.nodes, this.options);
+    this.graph = this.d3Service.getSimpleLineGraph(this.nodes, this.options);
 
     /** Binding change detection check on each tick
      * This along with an onPush change detection strategy should enforce checking only when relevant!
